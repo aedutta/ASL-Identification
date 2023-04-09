@@ -1,7 +1,6 @@
-# Part of OpenCV Library
-import cv2
-# This is a separate package which will help track gestures and various other hand symbols
-from cvzone.HandTrackingModule import HandDetector
+import cv2 # Part of OpenCV Library
+from cvzone.HandTrackingModule import HandDetector # This is a separate package which will help track gestures and various other hand symbols
+import numpy as np
 
 # OpenCV video capture from default camera (camera index 0)
 capture = cv2.VideoCapture(0)
@@ -21,8 +20,37 @@ while True:
     if hands:
         hand = hands[0] # Get the only hand (0 index)
         x,y,w,h = hand['bbox'] # Extract the bounding box in terms of x, y coordinates and width (w) and height (h)
+        
+        # Add an offset to increase the size of the bounding box
+        offset = 20
+        x = max(0, x - offset)
+        y = max(0, y - offset)
+        w = min(img.shape[1], w + offset * 2)
+        h = min(img.shape[0], h + offset * 2)
+
         crop = img[y:y+h, x:x+w] # Crop frame according to width and height
-        cv2.imshow("Cropped Video", crop) # Display the cropped video
+
+        # Calculate the scaling factor based on the larger dimension (width or height)
+        scale_factor = max(w, h) / 300
+        
+        # Calculate the scaled width and height
+        scaled_width = int(w / scale_factor)
+        scaled_height = int(h / scale_factor)
+        
+        # Resize the cropped image using the calculated scaling factor, this will act to stop an error in the code where the cropped image is greater than the 300 x 300 size
+        crop = cv2.resize(crop, (scaled_width, scaled_height))
+
+        # Create a white background of size 300x300 pixels, this will make all the images the same size
+        background = np.zeros((300, 300, 3), dtype=np.uint8) + 255
+
+        # Calculate the position to place the cropped image on the background
+        x_offset = (300 - crop.shape[1]) // 2
+        y_offset = (300 - crop.shape[0]) // 2
+        
+        # Place the cropped image on the background
+        background[y_offset:y_offset+crop.shape[0], x_offset:x_offset+crop.shape[1]] = crop
+
+        cv2.imshow("Cropped Video", background) # Display the cropped video
 
     cv2.imshow("Video", img) # Display the original video
     cv2.waitKey(1) # Wait for a key event with a 1 ms delay
