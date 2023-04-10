@@ -63,7 +63,7 @@ while True:
     cv2.waitKey(1) # Wait for a key event with a 1 ms delay
     key = cv2.waitKey(1) 
     if key in range(97, 123): # Check if a lowercase letter key is pressed (a to z)
-        letter = chr(key - 32) # Convert the lowercase letter to uppercase
+        letter = chr(key) # Convert the lowercase letter to uppercase
         folder = letter_folder_map.get(letter, folder) # Update the folder variable based on the pressed letter
         counter += 1
         cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', background) # Save the processed image in the respective folder with a unique filename based on current time
