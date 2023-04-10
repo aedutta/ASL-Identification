@@ -9,7 +9,10 @@ capture = cv2.VideoCapture(0)
 # This initializes the HandDector object, and we specify that the maximum number of objects to detect is 1
 detector = HandDetector(maxHands=1)
 
-folder = "Data/A"
+# Create a dictionary to map lowercase letter keys to uppercase folder names
+letter_folder_map = {chr(i+32): f"Data/{chr(i)}" for i in range(65, 91)}  # a to z
+
+folder = letter_folder_map.get('a', 'Data/A')  # Default folder is "Data/A"
 counter = 0
 
 # This loops a bunch of images to process the video
@@ -59,6 +62,9 @@ while True:
     cv2.imshow("Video", img) # Display the original video
     cv2.waitKey(1) # Wait for a key event with a 1 ms delay
     key = cv2.waitKey(1) 
-    if key == ord('a'):
+    if key in range(97, 123): # Check if a lowercase letter key is pressed (a to z)
+        letter = chr(key - 32) # Convert the lowercase letter to uppercase
+        folder = letter_folder_map.get(letter, folder) # Update the folder variable based on the pressed letter
         counter += 1
-        cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', background)
+        cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', background) # Save the processed image in the respective folder with a unique filename based on current time
+        print(counter)
