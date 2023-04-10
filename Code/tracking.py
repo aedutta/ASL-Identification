@@ -1,12 +1,16 @@
 import cv2 # Part of OpenCV Library
 from cvzone.HandTrackingModule import HandDetector # This is a separate package which will help track gestures and various other hand symbols
 import numpy as np
+import time
 
 # OpenCV video capture from default camera (camera index 0)
 capture = cv2.VideoCapture(0)
 
 # This initializes the HandDector object, and we specify that the maximum number of objects to detect is 1
 detector = HandDetector(maxHands=1)
+
+folder = "Data/A"
+counter = 0
 
 # This loops a bunch of images to process the video
 while True:
@@ -54,3 +58,7 @@ while True:
 
     cv2.imshow("Video", img) # Display the original video
     cv2.waitKey(1) # Wait for a key event with a 1 ms delay
+    key = cv2.waitKey(1) 
+    if key == ord('a'):
+        counter += 1
+        cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', background)
