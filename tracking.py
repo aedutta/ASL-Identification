@@ -47,6 +47,9 @@ while True:
         # Resize the cropped image using the calculated scaling factor, this will act to stop an error in the code where the cropped image is greater than the 300 x 300 size
         crop = cv2.resize(crop, (scaled_width, scaled_height))
 
+        if hand['type'] == 'Left': # If the detected hand is a left hand, rotate the image by 180 degrees
+            crop = cv2.flip(crop, flipCode=1) # this is in order to make all images detected the same
+
         # Create a white background of size 300x300 pixels, this will make all the images the same size
         background = np.zeros((300, 300, 3), dtype=np.uint8) + 255
 
