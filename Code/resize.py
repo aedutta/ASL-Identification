@@ -1,10 +1,10 @@
 import os
 import cv2
 
-# Folder containing the original images
+# Folder path containing the original images
 input_folder = 'Data/C'
 
-# Folder to save resized images
+# Folder path that will save images. In this case, I made it the same folder. 
 output_folder = 'Data/C'
 
 # Desired size for resized images
