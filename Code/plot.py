@@ -3,7 +3,7 @@ import re
 import matplotlib.pyplot as plt
 
 dir_path = 'Data/A'  # replace with the path to your directory
-pattern = re.compile(r'.*\.(jpg|jpeg|png|gif)$', re.IGNORECASE)
+pattern = re.compile(r'.*\.(jpg)$', re.IGNORECASE)
 
 folder_counts = {}
 for root, dirs, files in os.walk(dir_path):

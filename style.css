@@ -1,0 +1,94 @@
+/* CSS variables */
+:root {
+    --primary-color: #1c1e26;
+    --secondary-color: #272a36;
+    --accent-color: #fb9fa4;
+    --font-color: #e1e1e1;
+  }
+  
+  html {
+    font-family: "Trebuchet MS";
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  a {
+    text-decoration: none;
+  }
+  
+  a:link,
+  a:visited {
+    color: var(--accent-color);
+  }
+  
+  a:hover {
+    color: #ffffff;
+  }
+  
+  a.nav-home {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  a.nav-link {
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    color: var(--font-color);
+    margin-right: 20px;
+  }
+  
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  
+  body {
+    background-color: var(--primary-color);
+    color: var(--font-color);
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  h1 {
+    margin-top: 50px;
+  }
+  
+  #video-container {
+    text-align: center;
+    line-height: 480px;
+    margin-top: 50px;
+  }
+  
+  #video {
+    width: 640px;
+    height: 480px;
+    border: 2px solid var(--accent-color);
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  #instructions {
+    margin-top: 50px;
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--accent-color);
+  }
+  
+  button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.25rem;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  button:hover {
+    background-color: #ff7f86;
+  }
