@@ -1,5 +1,6 @@
 import cv2 # Part of OpenCV Library
 from cvzone.HandTrackingModule import HandDetector # This is a separate package which will help track gestures and various other hand symbols
+from cvzone.ClassificationModule import Classifier # This classifies the hand sign
 import numpy as np
 import time
 
@@ -14,6 +15,8 @@ letter_folder_map = {chr(i+32): f"Data/{chr(i)}" for i in range(65, 91)}  # a to
 
 folder = letter_folder_map.get('a', 'Data/A')  # Default folder is "Data/A"
 counter = 0
+
+labels = ["A", "B", "C"]
 
 # This loops a bunch of images to process the video
 while True:
