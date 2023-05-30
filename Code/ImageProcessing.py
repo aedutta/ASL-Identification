@@ -7,6 +7,18 @@ import time
 # OpenCV video capture from default camera (camera index 0)
 capture = cv2.VideoCapture(0)
 
+# font
+font = cv2.FONT_HERSHEY_SIMPLEX
+
+# How big the font is 
+fontScale = 1
+
+# Blue color in BGR
+color = (255, 0, 0)
+
+# Line thickness 
+thickness = 2
+
 # This initializes the HandDector object, and we specify that the maximum number of objects to detect is 1
 detector = HandDetector(maxHands=1)
 
@@ -64,9 +76,11 @@ while True:
         background[y_offset:y_offset+crop.shape[0], x_offset:x_offset+crop.shape[1]] = crop
         
         prediction, index = classifier.getPrediction(background)
-        print(prediction, index)
+        cv2.putText(img, labels[index], (x, y-20), font, fontScale, color, thickness, cv2.LINE_AA)
 
     cv2.imshow("Video", img) # Display the original video
+
+    # This part of the code is for processing 
     cv2.waitKey(1) # Wait for a key event with a 1 ms delay
     key = cv2.waitKey(1) 
     if key in range(97, 123): # Check if a lowercase letter key is pressed (a to z)
