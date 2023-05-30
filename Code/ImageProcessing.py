@@ -1,5 +1,6 @@
 import cv2 # Part of OpenCV Library
 from cvzone.HandTrackingModule import HandDetector # This is a separate package which will help track gestures and various other hand symbols
+from cvzone.ClassificationModule import Classifier # This classifies the hand sign
 import numpy as np
 import time
 
@@ -14,6 +15,8 @@ letter_folder_map = {chr(i+32): f"Data/{chr(i)}" for i in range(65, 91)}  # a to
 
 folder = letter_folder_map.get('a', 'Data/A')  # Default folder is "Data/A"
 counter = 0
+classifier = Classifier("Model/keras_model.h5", "Model/labels.txt")
+labels = ["A", "B", "C"]
 
 # This loops a bunch of images to process the video
 while True:
@@ -59,8 +62,9 @@ while True:
         
         # Place the cropped image on the background
         background[y_offset:y_offset+crop.shape[0], x_offset:x_offset+crop.shape[1]] = crop
-
-        cv2.imshow("Cropped Video", background) # Display the cropped video
+        
+        prediction, index = classifier.getPrediction(background)
+        print(prediction, index)
 
     cv2.imshow("Video", img) # Display the original video
     cv2.waitKey(1) # Wait for a key event with a 1 ms delay
