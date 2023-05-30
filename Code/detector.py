@@ -77,11 +77,10 @@ while True:
         
         # Place the cropped image on the background
         background[y_offset:y_offset+crop.shape[0], x_offset:x_offset+crop.shape[1]] = crop
-        
-        prediction, index = classifier.getPrediction(background)
-        cv2.putText(imgFinal, labels[index], (x, y-20), font, fontScale, color, thickness, cv2.LINE_AA)
 
-    cv2.imshow("Video", imgFinal) # Display the original video
+        cv2.imshow("Background", background)
+
+    cv2.imshow("Video", img) # Display the original video
 
     # This part of the code is for processing 
     cv2.waitKey(1) # Wait for a key event with a 1 ms delay
