@@ -89,3 +89,4 @@ while True:
         counter += 1
         cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', background) # Save the processed image in the respective folder with a unique filename based on current time
         print(counter)
+        
