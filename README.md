@@ -1,2 +1,2 @@
-# Multi-Purpose-Hand-Tracking-Software
-This software uses machine learning to track the movement of your hand and various gestures. Some capabilities it has is to translate American Sign Language (ASL) to words in order to create smooth conversations between those who don't know ASL and those who do. 
+# ASL-Identification
+This software uses machine learning to identify American Sign Language (ASL) live. I intend to make this project better by using better models, incorporation gesture commands, and implement lip reading. 
