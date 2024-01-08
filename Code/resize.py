@@ -24,7 +24,7 @@ for filename in os.listdir(input_folder):
         # Check if the image was resized correctly
         if resized_image.shape[:2] == target_size:
             # Save resized image with a numeric name (e.g., 1.jpg, 2.jpg, etc.)
-            output_filename = f'A{counter}.jpg'
+            output_filename = f'B{counter}.jpg'
             cv2.imwrite(os.path.join(output_folder, output_filename), resized_image)
             counter += 1
         else:
